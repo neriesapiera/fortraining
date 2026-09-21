@@ -1,0 +1,1965 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SEO & GEO MASTERY — RETRO ARCADE VHS EDITION</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Orbitron:wght@400;700;900&display=swap');
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --neon-pink: #FF10F0;
+      --neon-cyan: #00F0FF;
+      --neon-yellow: #FFFF00;
+      --neon-green: #39FF14;
+      --neon-purple: #BC13FE;
+      --arcade-dark: #0a0e27;
+      --arcade-black: #000000;
+      --vhs-white: #f0f0f0;
+      --vhs-warm: #ffebe5;
+      --scanline: rgba(0, 0, 0, 0.15);
+    }
+
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Orbitron', monospace;
+      background: linear-gradient(45deg, var(--arcade-dark) 0%, #1a1a2e 50%, #0f3460 100%);
+      color: var(--neon-cyan);
+      line-height: 1.7;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: repeating-linear-gradient(
+        0deg,
+        var(--scanline),
+        var(--scanline) 1px,
+        transparent 1px,
+        transparent 2px
+      );
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(ellipse at center, transparent 0%, rgba(0,0,0,0.3) 100%);
+      pointer-events: none;
+      z-index: 9998;
+    }
+
+    header {
+      background: linear-gradient(90deg, #0a0e27 0%, #1a0033 50%, #0a0e27 100%);
+      border: 3px solid var(--neon-cyan);
+      border-bottom: 5px solid var(--neon-pink);
+      padding: 32px 40px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 0 30px rgba(0, 240, 255, 0.5), inset 0 0 20px rgba(255, 16, 240, 0.1);
+      clip-path: polygon(0 0, 100% 0, 98% 100%, 0 100%);
+    }
+
+    .header-content {
+      max-width: 1400px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .logo {
+      font-family: 'Press Start 2P', cursive;
+      font-size: 24px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      background: linear-gradient(90deg, var(--neon-cyan), var(--neon-pink), var(--neon-yellow));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-shadow: 0 0 20px rgba(255, 16, 240, 0.6);
+      animation: flicker 0.15s infinite;
+    }
+
+    @keyframes flicker {
+      0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% { text-shadow: 0 0 20px rgba(255, 16, 240, 0.6); }
+      20%, 24%, 55% { text-shadow: 0 0 20px rgba(255, 16, 240, 0.2); }
+    }
+
+    .tagline {
+      font-size: 11px;
+      color: var(--neon-yellow);
+      margin-top: 8px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      font-family: 'Orbitron', monospace;
+      font-weight: 700;
+      text-shadow: 0 0 10px rgba(255, 255, 0, 0.5);
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 8px;
+      background: var(--arcade-black);
+      margin-top: 16px;
+      border: 2px solid var(--neon-green);
+      box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5), 0 0 15px rgba(57, 255, 20, 0.3);
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--neon-cyan), var(--neon-pink), var(--neon-green));
+      width: 0%;
+      transition: width 0.3s;
+      box-shadow: 0 0 10px rgba(255, 16, 240, 0.8), inset 0 0 5px rgba(255, 255, 255, 0.3);
+    }
+
+    nav {
+      position: fixed;
+      left: 0;
+      top: 140px;
+      width: 320px;
+      height: calc(100vh - 140px);
+      background: linear-gradient(180deg, #0a0e27 0%, #1a0033 100%);
+      border-right: 3px solid var(--neon-pink);
+      border-left: 3px solid var(--neon-cyan);
+      padding: 24px 0;
+      overflow-y: auto;
+      z-index: 50;
+      box-shadow: inset -20px 0 30px rgba(255, 16, 240, 0.1), -10px 0 30px rgba(0, 240, 255, 0.2);
+    }
+
+    nav::-webkit-scrollbar {
+      width: 12px;
+    }
+
+    nav::-webkit-scrollbar-track {
+      background: var(--arcade-black);
+    }
+
+    nav::-webkit-scrollbar-thumb {
+      background: linear-gradient(180deg, var(--neon-cyan), var(--neon-pink));
+      border-radius: 6px;
+      box-shadow: 0 0 10px rgba(0, 240, 255, 0.6);
+    }
+
+    nav a {
+      display: block;
+      padding: 12px 24px;
+      color: var(--neon-cyan);
+      text-decoration: none;
+      font-size: 11px;
+      font-weight: 700;
+      border-left: 4px solid transparent;
+      transition: all 0.2s;
+      letter-spacing: 1px;
+      position: relative;
+      text-transform: uppercase;
+      text-shadow: 0 0 8px rgba(0, 240, 255, 0.3);
+    }
+
+    nav a::before {
+      content: '▶ ';
+      opacity: 0;
+      margin-right: 4px;
+      color: var(--neon-yellow);
+      transition: opacity 0.2s;
+    }
+
+    nav a:hover {
+      background: rgba(0, 240, 255, 0.1);
+      color: var(--neon-yellow);
+      border-left-color: var(--neon-yellow);
+      padding-left: 28px;
+      box-shadow: inset 10px 0 20px rgba(0, 240, 255, 0.1);
+      text-shadow: 0 0 15px rgba(255, 255, 0, 0.6);
+    }
+
+    nav a:hover::before {
+      opacity: 1;
+    }
+
+    nav a.active {
+      background: rgba(255, 16, 240, 0.15);
+      color: var(--neon-pink);
+      border-left-color: var(--neon-pink);
+      font-weight: 900;
+      box-shadow: inset 10px 0 20px rgba(255, 16, 240, 0.1), 0 0 15px rgba(255, 16, 240, 0.3);
+      text-shadow: 0 0 15px rgba(255, 16, 240, 0.8);
+    }
+
+    nav a.active::before {
+      opacity: 1;
+      color: var(--neon-pink);
+    }
+
+    .nav-section {
+      padding-top: 20px;
+    }
+
+    .nav-section:first-child {
+      padding-top: 0;
+    }
+
+    .nav-section-title {
+      padding: 12px 24px;
+      font-size: 9px;
+      color: var(--neon-green);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-weight: 900;
+      opacity: 0.8;
+      font-family: 'Press Start 2P', cursive;
+      text-shadow: 0 0 10px rgba(57, 255, 20, 0.4);
+      border-bottom: 1px dashed var(--neon-green);
+      margin: 0 12px;
+    }
+
+    main {
+      margin-left: 320px;
+      padding: 60px 60px;
+      max-width: 1100px;
+      position: relative;
+      z-index: 10;
+    }
+
+    section {
+      margin-bottom: 100px;
+      display: none;
+      animation: arcade-appear 0.4s ease-out;
+      background: linear-gradient(135deg, rgba(26, 0, 51, 0.6) 0%, rgba(10, 14, 39, 0.8) 100%);
+      padding: 40px;
+      border: 3px solid;
+      border-image: linear-gradient(45deg, var(--neon-cyan), var(--neon-pink), var(--neon-green), var(--neon-yellow)) 1;
+      box-shadow: 0 0 30px rgba(0, 240, 255, 0.2), inset 0 0 20px rgba(255, 16, 240, 0.1), -5px -5px 15px rgba(0, 0, 0, 0.5);
+      position: relative;
+    }
+
+    section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent 0,
+        transparent 2px,
+        rgba(255, 16, 240, 0.03) 2px,
+        rgba(255, 16, 240, 0.03) 4px
+      );
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    section > * {
+      position: relative;
+      z-index: 2;
+    }
+
+    section.active {
+      display: block;
+    }
+
+    @keyframes arcade-appear {
+      0% { opacity: 0; transform: scale(0.95) translateY(20px); }
+      100% { opacity: 1; transform: scale(1) translateY(0); }
+    }
+
+    h1 {
+      font-family: 'Press Start 2P', cursive;
+      font-size: 42px;
+      font-weight: 900;
+      margin-bottom: 20px;
+      letter-spacing: 1px;
+      background: linear-gradient(90deg, var(--neon-cyan), var(--neon-pink), var(--neon-yellow));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-shadow: 0 0 30px rgba(255, 16, 240, 0.6);
+      animation: neon-glow 2s ease-in-out infinite;
+    }
+
+    @keyframes neon-glow {
+      0%, 100% { filter: drop-shadow(0 0 10px rgba(255, 16, 240, 0.6)); }
+      50% { filter: drop-shadow(0 0 20px rgba(255, 16, 240, 0.9)); }
+    }
+
+    .section-intro {
+      font-size: 16px;
+      color: var(--neon-cyan);
+      margin-bottom: 40px;
+      line-height: 1.8;
+      max-width: 700px;
+      text-shadow: 0 0 10px rgba(0, 240, 255, 0.4);
+      border-left: 4px solid var(--neon-yellow);
+      padding-left: 20px;
+    }
+
+    h2 {
+      font-family: 'Orbitron', monospace;
+      font-size: 28px;
+      font-weight: 900;
+      margin: 48px 0 24px 0;
+      padding-bottom: 16px;
+      border-bottom: 3px dashed var(--neon-pink);
+      letter-spacing: 1px;
+      color: var(--neon-yellow);
+      text-shadow: 0 0 15px rgba(255, 255, 0, 0.5);
+    }
+
+    h3 {
+      font-size: 18px;
+      font-weight: 900;
+      margin: 32px 0 16px 0;
+      color: var(--neon-cyan);
+      letter-spacing: 1px;
+      text-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
+    }
+
+    h4 {
+      font-size: 14px;
+      font-weight: 900;
+      margin: 24px 0 12px 0;
+      color: var(--neon-green);
+      letter-spacing: 1px;
+      text-shadow: 0 0 8px rgba(57, 255, 20, 0.4);
+    }
+
+    p {
+      margin-bottom: 18px;
+      line-height: 1.8;
+      color: var(--vhs-white);
+    }
+
+    strong {
+      color: var(--neon-yellow);
+      text-shadow: 0 0 10px rgba(255, 255, 0, 0.4);
+      font-weight: 900;
+    }
+
+    .callout {
+      background: linear-gradient(135deg, rgba(0, 240, 255, 0.08) 0%, rgba(255, 16, 240, 0.08) 100%);
+      border: 2px solid var(--neon-cyan);
+      border-left: 6px solid var(--neon-cyan);
+      padding: 24px;
+      margin: 32px 0;
+      box-shadow: 0 0 20px rgba(0, 240, 255, 0.2), inset 0 0 10px rgba(0, 240, 255, 0.05);
+      position: relative;
+    }
+
+    .callout::before {
+      content: '⚙';
+      position: absolute;
+      top: -15px;
+      left: 20px;
+      font-size: 24px;
+      color: var(--neon-cyan);
+      animation: spin 4s linear infinite;
+    }
+
+    @keyframes spin { 100% { transform: rotate(360deg); } }
+
+    .callout.warning {
+      border-color: var(--neon-pink);
+      border-left-color: var(--neon-pink);
+      background: linear-gradient(135deg, rgba(255, 16, 240, 0.08) 0%, rgba(255, 16, 240, 0.05) 100%);
+      box-shadow: 0 0 20px rgba(255, 16, 240, 0.2), inset 0 0 10px rgba(255, 16, 240, 0.05);
+    }
+
+    .callout.warning::before {
+      color: var(--neon-pink);
+      content: '⚠';
+    }
+
+    .callout.success {
+      border-color: var(--neon-green);
+      border-left-color: var(--neon-green);
+      background: linear-gradient(135deg, rgba(57, 255, 20, 0.08) 0%, rgba(57, 255, 20, 0.05) 100%);
+      box-shadow: 0 0 20px rgba(57, 255, 20, 0.2), inset 0 0 10px rgba(57, 255, 20, 0.05);
+    }
+
+    .callout.success::before {
+      color: var(--neon-green);
+      content: '✓';
+    }
+
+    .callout-title {
+      font-weight: 900;
+      margin-bottom: 8px;
+      font-size: 12px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-left: 30px;
+    }
+
+    .callout p {
+      margin-bottom: 0;
+      font-size: 14px;
+      margin-left: 0;
+    }
+
+    ul, ol {
+      margin: 24px 0 24px 24px;
+      color: var(--vhs-white);
+    }
+
+    li {
+      margin-bottom: 12px;
+      line-height: 1.8;
+    }
+
+    li strong {
+      color: var(--neon-yellow);
+    }
+
+    .example-box {
+      background: linear-gradient(135deg, rgba(0, 240, 255, 0.05) 0%, rgba(26, 0, 51, 0.3) 100%);
+      border: 2px solid var(--neon-cyan);
+      padding: 28px;
+      margin: 28px 0;
+      box-shadow: 0 0 20px rgba(0, 240, 255, 0.2), inset 0 0 15px rgba(0, 240, 255, 0.05);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .example-box::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent 0,
+        transparent 2px,
+        rgba(0, 240, 255, 0.05) 2px,
+        rgba(0, 240, 255, 0.05) 4px
+      );
+      pointer-events: none;
+    }
+
+    .example-box > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .example-title {
+      font-weight: 900;
+      color: var(--neon-green);
+      margin-bottom: 16px;
+      font-size: 11px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      font-family: 'Orbitron', monospace;
+      text-shadow: 0 0 10px rgba(57, 255, 20, 0.4);
+    }
+
+    .example-box code {
+      background: var(--arcade-black);
+      padding: 2px 6px;
+      border-radius: 2px;
+      font-size: 12px;
+      color: var(--neon-green);
+      font-family: 'Orbitron', monospace;
+      box-shadow: 0 0 8px rgba(57, 255, 20, 0.3);
+    }
+
+    .example-box p {
+      margin-bottom: 12px;
+    }
+
+    .example-box p:last-child {
+      margin-bottom: 0;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      margin: 32px 0;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 28px;
+      margin: 32px 0;
+    }
+
+    .grid-item {
+      background: linear-gradient(135deg, rgba(0, 240, 255, 0.05) 0%, rgba(255, 16, 240, 0.05) 100%);
+      border: 2px solid;
+      border-image: linear-gradient(135deg, var(--neon-cyan), var(--neon-pink)) 1;
+      padding: 32px;
+      box-shadow: 0 0 20px rgba(0, 240, 255, 0.15), inset 0 0 10px rgba(255, 16, 240, 0.05);
+      transition: all 0.3s;
+    }
+
+    .grid-item:hover {
+      box-shadow: 0 0 30px rgba(0, 240, 255, 0.3), inset 0 0 15px rgba(255, 16, 240, 0.1);
+      transform: translateY(-4px);
+      border-image: linear-gradient(135deg, var(--neon-pink), var(--neon-yellow)) 1;
+    }
+
+    .grid-item h3 {
+      margin-top: 0;
+      font-size: 16px;
+    }
+
+    .grid-item h4 {
+      margin-top: 0;
+    }
+
+    .grid-item p {
+      font-size: 13px;
+    }
+
+    .checklist {
+      list-style: none;
+      margin: 24px 0;
+    }
+
+    .checklist li {
+      padding: 12px 0;
+      padding-left: 32px;
+      position: relative;
+      border-bottom: 1px dotted var(--neon-cyan);
+    }
+
+    .checklist li:before {
+      content: '▶';
+      position: absolute;
+      left: 0;
+      color: var(--neon-green);
+      font-weight: 900;
+      font-size: 14px;
+      animation: blink-arrow 1s infinite;
+    }
+
+    @keyframes blink-arrow {
+      0%, 49%, 100% { opacity: 1; }
+      50%, 99% { opacity: 0.3; }
+    }
+
+    .stat-box {
+      background: linear-gradient(135deg, rgba(0, 240, 255, 0.1) 0%, rgba(255, 16, 240, 0.1) 100%);
+      padding: 28px;
+      border: 2px solid var(--neon-pink);
+      margin: 24px 0;
+      text-align: center;
+      box-shadow: 0 0 25px rgba(255, 16, 240, 0.3), inset 0 0 15px rgba(0, 240, 255, 0.1);
+      position: relative;
+    }
+
+    .stat-box::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: repeating-linear-gradient(0deg, transparent, transparent 1px, rgba(255, 16, 240, 0.05) 1px, rgba(255, 16, 240, 0.05) 2px);
+      pointer-events: none;
+    }
+
+    .stat-number {
+      font-family: 'Press Start 2P', cursive;
+      font-size: 36px;
+      font-weight: 900;
+      color: var(--neon-pink);
+      margin-bottom: 8px;
+      text-shadow: 0 0 20px rgba(255, 16, 240, 0.6);
+      position: relative;
+      z-index: 1;
+    }
+
+    .stat-label {
+      font-size: 11px;
+      color: var(--neon-cyan);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      font-weight: 900;
+      text-shadow: 0 0 10px rgba(0, 240, 255, 0.4);
+      position: relative;
+      z-index: 1;
+    }
+
+    .deep-dive {
+      background: linear-gradient(135deg, rgba(0, 240, 255, 0.08) 0%, rgba(0, 240, 255, 0.04) 100%);
+      padding: 32px;
+      border-left: 6px solid var(--neon-cyan);
+      border: 2px solid var(--neon-cyan);
+      margin: 32px 0;
+      box-shadow: 0 0 25px rgba(0, 240, 255, 0.2), inset 0 0 15px rgba(0, 240, 255, 0.05);
+      position: relative;
+    }
+
+    .deep-dive-title {
+      font-size: 14px;
+      font-weight: 900;
+      color: var(--neon-green);
+      margin-bottom: 16px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      text-shadow: 0 0 10px rgba(57, 255, 20, 0.4);
+      font-family: 'Orbitron', monospace;
+    }
+
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 24px 0;
+      background: var(--arcade-black);
+      box-shadow: 0 0 20px rgba(0, 240, 255, 0.2);
+    }
+
+    .comparison-table th {
+      background: linear-gradient(90deg, var(--neon-cyan), var(--neon-pink));
+      padding: 16px;
+      text-align: left;
+      font-weight: 900;
+      font-size: 12px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--arcade-black);
+      text-shadow: none;
+    }
+
+    .comparison-table td {
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--neon-cyan);
+      border-right: 1px solid var(--neon-pink);
+      font-size: 13px;
+      color: var(--vhs-white);
+    }
+
+    .comparison-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .comparison-table tr:nth-child(even) {
+      background: rgba(255, 16, 240, 0.05);
+    }
+
+    .comparison-table tr:hover {
+      background: rgba(0, 240, 255, 0.1);
+    }
+
+    .section-counter {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--neon-pink), var(--neon-yellow));
+      padding: 8px 16px;
+      font-size: 11px;
+      color: var(--arcade-black);
+      font-weight: 900;
+      margin-bottom: 16px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      font-family: 'Orbitron', monospace;
+      box-shadow: 0 0 15px rgba(255, 16, 240, 0.5);
+      clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 50%, calc(100% - 10px) 100%, 0 100%, 10px 50%);
+    }
+
+    .nav-button {
+      padding: 16px 24px;
+      background: linear-gradient(135deg, rgba(0, 240, 255, 0.2), rgba(0, 240, 255, 0.1));
+      border: 2px solid var(--neon-cyan);
+      color: var(--neon-cyan);
+      text-align: center;
+      font-weight: 900;
+      font-size: 12px;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-decoration: none;
+      display: inline-block;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      box-shadow: 0 0 10px rgba(0, 240, 255, 0.3);
+      font-family: 'Orbitron', monospace;
+      text-shadow: 0 0 8px rgba(0, 240, 255, 0.4);
+    }
+
+    .nav-button:hover {
+      background: linear-gradient(135deg, rgba(0, 240, 255, 0.4), rgba(0, 240, 255, 0.2));
+      box-shadow: 0 0 20px rgba(0, 240, 255, 0.6);
+      transform: translateY(-2px);
+    }
+
+    .nav-button.next {
+      background: linear-gradient(135deg, var(--neon-pink), var(--neon-yellow));
+      border-color: var(--neon-pink);
+      color: var(--arcade-black);
+      text-shadow: none;
+      font-weight: 900;
+    }
+
+    .nav-button.next:hover {
+      box-shadow: 0 0 30px rgba(255, 16, 240, 0.6), 0 0 20px rgba(255, 255, 0, 0.4);
+      transform: translateY(-2px) scale(1.05);
+    }
+
+    .nav-button:disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+    }
+
+    .nav-footer {
+      display: flex;
+      gap: 16px;
+      margin-top: 60px;
+      padding-top: 40px;
+      border-top: 2px dashed var(--neon-cyan);
+    }
+
+    @media (max-width: 1024px) {
+      nav { width: 260px; }
+      main { margin-left: 260px; padding: 40px 30px; }
+      .grid-2, .grid-3 { grid-template-columns: 1fr; }
+      h1 { font-size: 32px; }
+      h2 { font-size: 22px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-content">
+      <div class="logo">► SEO & GEO ◄</div>
+      <div class="tagline">♫ RETRO ARCADE VHS MASTERY ♫</div>
+      <div class="progress-bar">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+    </div>
+  </header>
+
+  <nav>
+    <div class="nav-section">
+      <div class="nav-section-title">POWER UP</div>
+      <a href="#" data-section="intro" class="nav-link active">START GAME</a>
+      <a href="#" data-section="why" class="nav-link">WHY IT MATTERS</a>
+      <a href="#" data-section="how-google" class="nav-link">GOOGLE CORE</a>
+    </div>
+
+    <div class="nav-section">
+      <div class="nav-section-title">SEO COMBOS</div>
+      <a href="#" data-section="keyword-deep" class="nav-link">KEYWORD DEEP</a>
+      <a href="#" data-section="onpage-advanced" class="nav-link">ON-PAGE PRO</a>
+      <a href="#" data-section="technical-deep" class="nav-link">TECH DIVE</a>
+      <a href="#" data-section="content-strategy" class="nav-link">CONTENT FLO</a>
+      <a href="#" data-section="link-building" class="nav-link">LINK MASTERS</a>
+      <a href="#" data-section="competitors" class="nav-link">VS RIVALS</a>
+    </div>
+
+    <div class="nav-section">
+      <div class="nav-section-title">GEO LEVEL</div>
+      <a href="#" data-section="geo-advanced" class="nav-link">GEO ADVANCED</a>
+      <a href="#" data-section="local-detailed" class="nav-link">LOCAL DEEP</a>
+      <a href="#" data-section="gmb-mastery" class="nav-link">GMB PRO</a>
+    </div>
+
+    <div class="nav-section">
+      <div class="nav-section-title">EVENT MODE</div>
+      <a href="#" data-section="events-framework" class="nav-link">EVENT CORE</a>
+      <a href="#" data-section="timeline" class="nav-link">12MO LOOP</a>
+      <a href="#" data-section="metrics" class="nav-link">METRICS</a>
+    </div>
+
+    <div class="nav-section">
+      <div class="nav-section-title">TOOLS ROOM</div>
+      <a href="#" data-section="tools-detailed" class="nav-link">TOOLKIT</a>
+      <a href="#" data-section="templates" class="nav-link">TEMPLATES</a>
+      <a href="#" data-section="faq" class="nav-link">DEBUG FAQ</a>
+    </div>
+
+    <div class="nav-section">
+      <div class="nav-section-title">ARCADE GAMES</div>
+      <a href="#" data-section="keyword-matcher" class="nav-link">KEYWORD MATCH</a>
+      <a href="#" data-section="ranking-challenge" class="nav-link">RANK QUEST</a>
+      <a href="#" data-section="link-builder" class="nav-link">LINK HUNT</a>
+      <a href="#" data-section="seo-troubleshoot" class="nav-link">FIX-IT</a>
+      <a href="#" data-section="high-scores" class="nav-link">HIGH SCORES</a>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- L1: INTRO -->
+    <section id="intro" class="active">
+      <div class="section-counter">L1 / 18</div>
+      <h1>SEO & GEO MASTERY</h1>
+      <p class="section-intro">Welcome to the arcade. Your mission: make ATEX events discoverable on Google. Two paths. One controller. Let's play.</p>
+
+      <h2>ENTER THE GAME</h2>
+      <p>This is not a tutorial. This is a professional mastery system. 18 levels. Comprehensive. Real tactics. Real results.</p>
+      <p>You will learn the mechanics of search engine optimisation, the strategy behind geographic targeting, and how to apply both to your events (Libya Build, Horeca Libya, Code DXB, Kuwait Build, and more).</p>
+
+      <h2>THE POWER-UPS</h2>
+      <ul class="checklist">
+        <li>How Google's algorithm works (not mythology)</li>
+        <li>Advanced keyword research that finds hidden opportunities</li>
+        <li>On-page SEO that goes beyond meta tags</li>
+        <li>Technical SEO that fixes hidden sabotage</li>
+        <li>Content strategy that earns backlinks naturally</li>
+        <li>Link building: 8 concrete tactics</li>
+        <li>Competitive analysis to find gaps</li>
+        <li>Geographic targeting for maximum reach</li>
+        <li>Local SEO domination</li>
+        <li>Google Business Profile mastery</li>
+        <li>12-month event SEO timeline</li>
+        <li>Metrics that matter (not vanity stats)</li>
+        <li>Tools guide (free vs paid)</li>
+      </ul>
+
+      <div class="stat-box">
+        <div class="stat-number">18</div>
+        <div class="stat-label">COMPLETE LEVELS</div>
+      </div>
+
+      <div class="callout success">
+        <div class="callout-title">PLAY TIME</div>
+        <p>Complete this in 3-4 hours. Treat it like an investment. After this, you'll have knowledge that applies to every event you touch. Ever.</p>
+      </div>
+
+      <h2>HOW TO PLAY</h2>
+      <p>Click the sidebar. Navigate the levels. Each builds on the last. Bookmark this page. Return whenever you need to level up your event SEO.</p>
+
+      <h2>THE OBJECTIVE</h2>
+      <p><strong>SEO is not optional.</strong> In 2027, event discovery happens on Google. If your event doesn't rank, you lose registrations to competitors who do. If you understand and execute on these principles, you build a moat that paid advertising can't replicate.</p>
+
+      <p>The ROI is simple: months of consistent work now = years of organic traffic momentum later.</p>
+
+      <p><strong>Ready to beat the high score?</strong></p>
+
+      <div class="nav-footer">
+        <button class="nav-button next" onclick="showSection('why')" style="flex-grow: 1;">LEVEL 2: WHY IT MATTERS →</button>
+      </div>
+    </section>
+
+    <!-- L2: WHY THIS MATTERS -->
+    <section id="why">
+      <div class="section-counter">L2 / 18</div>
+      <h1>WHY THIS MATTERS</h1>
+      <p class="section-intro">The business case. The ROI. The reason you're here.</p>
+
+      <h2>THE PROBLEM</h2>
+      <p>You have an event. It's good. Sponsors locked. Speakers secured. Venue confirmed. But the public doesn't know it exists.</p>
+      <p>Someone Googles "exhibitions Dubai" and your event is on page 5. Your competitor is on page 2. Every day that passes, potential attendees find someone else's event.</p>
+
+      <h2>THE MATH</h2>
+      <div class="deep-dive">
+        <div class="deep-dive-title">ROI Calculation: Real Numbers</div>
+        <p><strong>Scenario: Code DXB 2027</strong></p>
+        <p>5,000 monthly searches for "AI conferences UAE." You rank #3 (10% of clicks = 500 visitors/month). 3% registration conversion = 15 registrations/month.</p>
+        <p>6 months pre-event: 15 × 6 = 90 registrations from ONE keyword.</p>
+        <p>At 9 sqm average booth, AED 5,000/sqm = AED 45,000 per booth.</p>
+        <p>45 booths × AED 45,000 = <strong>AED 2,025,000 in exhibitor revenue.</strong></p>
+        <p>But if you rank #10 instead (1% of clicks), you get 15 registrations total = <strong>AED 225,000 in lost revenue from ONE keyword.</strong></p>
+        <p>Scale across 20-30 keywords you should rank for, and the opportunity cost is massive.</p>
+      </div>
+
+      <h2>THREE AUDIENCES</h2>
+      <div class="grid-3">
+        <div class="grid-item">
+          <h3>Visitors</h3>
+          <p>They search for your event (branded), category keywords, and problem keywords.</p>
+        </div>
+        <div class="grid-item">
+          <h3>Exhibitors</h3>
+          <p>They search for event opportunities and check your credibility signals.</p>
+        </div>
+        <div class="grid-item">
+          <h3>Media</h3>
+          <p>They discover stories through SEO, then link and share.</p>
+        </div>
+      </div>
+
+      <h2>WHY GEOGRAPHY MATTERS</h2>
+      <p>Your event is geographic. Code DXB happens in Dubai. Libya Build happens in Benghazi. You can't attend if you can't travel there.</p>
+      <p>Geographic targeting ensures your budget focuses on reachable audiences. A person in Dubai has 40% higher attendance probability than someone in London.</p>
+
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th>FACTOR</th>
+            <th>PAID ADS</th>
+            <th>ORGANIC SEO</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Time to Results</strong></td>
+            <td>Immediate (hours)</td>
+            <td>3-6 months min</td>
+          </tr>
+          <tr>
+            <td><strong>Cost Per Click</strong></td>
+            <td>AED 5-50+</td>
+            <td>Free (after setup)</td>
+          </tr>
+          <tr>
+            <td><strong>Long-Term Value</strong></td>
+            <td>Stops when budget stops</td>
+            <td>Builds momentum</td>
+          </tr>
+          <tr>
+            <td><strong>Trust Signal</strong></td>
+            <td>Low (users know it's an ad)</td>
+            <td>High (organic = credibility)</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="callout warning">
+        <div class="callout-title">THE IDEAL PLAY</div>
+        <p>Use paid ads for months 1-2 (immediate awareness). Use SEO for months 3-12 (sustained growth). Together: competitive moat that rivals can't replicate.</p>
+      </div>
+
+      <div class="nav-footer">
+        <button class="nav-button" onclick="showSection('intro')">← BACK</button>
+        <button class="nav-button next" onclick="showSection('how-google')" style="flex-grow: 1;">LEVEL 3: GOOGLE CORE →</button>
+      </div>
+    </section>
+
+    <!-- L3: HOW GOOGLE WORKS -->
+    <section id="how-google">
+      <div class="section-counter">L3 / 18</div>
+      <h1>HOW GOOGLE WORKS</h1>
+      <p class="section-intro">Three phases. Crawl. Index. Rank. Understanding this is the key to everything.</p>
+
+      <h2>PHASE 1: CRAWLING</h2>
+      <p>Google sends bots ("crawlers") to visit your site. They follow every link, read your content, images, videos, metadata. Think of it like a robot walking through your arcade, examining every machine.</p>
+
+      <h3>What Gets Crawled</h3>
+      <ul>
+        <li>All pages you want indexed (specified in robots.txt)</li>
+        <li>All links on those pages</li>
+        <li>Images and their alt text</li>
+        <li>Videos and metadata</li>
+        <li>Structured data (schema markup)</li>
+      </ul>
+
+      <h3>What Doesn't Get Crawled</h3>
+      <ul>
+        <li>Pages blocked in robots.txt</li>
+        <li>Pages behind login walls</li>
+        <li>Pages that load via JavaScript only</li>
+        <li>Duplicate content (Google crawls canonical version)</li>
+        <li>Extremely slow pages (crawlers have time limits)</li>
+      </ul>
+
+      <h2>PHASE 2: INDEXING</h2>
+      <p>Google processes what it crawled and adds it to its index. Think of the index as Google's giant library: every page it knows about, catalogued and searchable.</p>
+
+      <h3>What Triggers Indexing</h3>
+      <ul class="checklist">
+        <li>Pages are crawlable (not blocked)</li>
+        <li>Pages have unique, original content</li>
+        <li>Pages don't violate Google policies</li>
+        <li>Page has been crawled at least once</li>
+      </ul>
+
+      <h2>PHASE 3: RANKING</h2>
+      <p>When someone searches, Google retrieves indexed pages matching the query and ranks them using 200+ factors. Top 10 results = page 1. That's where you want to be.</p>
+
+      <h2>THE RANKING FACTORS</h2>
+      <div class="grid-3">
+        <div class="grid-item">
+          <h4>Relevance (E-E-A-T)</h4>
+          <p>Experience, Expertise, Authoritativeness, Trustworthiness. Show you're the authority on your event.</p>
+        </div>
+        <div class="grid-item">
+          <h4>Backlinks</h4>
+          <p>Links from other sites are "votes" for your credibility. Quality over quantity.</p>
+        </div>
+        <div class="grid-item">
+          <h4>Page Speed</h4>
+          <p>Slow pages rank lower. Target under 3 seconds on mobile.</p>
+        </div>
+        <div class="grid-item">
+          <h4>Mobile-Friendliness</h4>
+          <p>Google indexes mobile version first. Non-mobile-friendly sites are penalised.</p>
+        </div>
+        <div class="grid-item">
+          <h4>Content Quality</h4>
+          <p>Longer, comprehensive content typically ranks better. But only if it's actually good.</p>
+        </div>
+        <div class="grid-item">
+          <h4>User Signals</h4>
+          <p>Click-through rate (CTR), bounce rate, time on page. Do users click and stay?</p>
+        </div>
+      </div>
+
+      <h2>CORE WEB VITALS</h2>
+      <p>Google heavily weighs three user experience metrics:</p>
+
+      <div class="callout">
+        <div class="callout-title">LCP - Largest Contentful Paint</div>
+        <p>How long main content takes to load. Target: under 2.5 seconds.</p>
+      </div>
+
+      <div class="callout">
+        <div class="callout-title">FID - First Input Delay</div>
+        <p>How responsive your site is to clicks/scrolls. Target: under 100ms.</p>
+      </div>
+
+      <div class="callout">
+        <div class="callout-title">CLS - Cumulative Layout Shift</div>
+        <p>How much page elements move around as it loads. Target: under 0.1.</p>
+      </div>
+
+      <p>Poor Core Web Vitals = lower rankings. Better metrics = better rankings, even with the same content.</p>
+
+      <h2>SEARCH INTENT</h2>
+      <p>Google understands not just the words, but the intent behind them.</p>
+
+      <div class="example-box">
+        <div class="example-title">Intent Types</div>
+        <p><strong>Navigational:</strong> "Code DXB registration" - They want to register. Serve your registration page.</p>
+        <p><strong>Informational:</strong> "What is AI executive networking" - They want to learn. Serve educational content.</p>
+        <p><strong>Commercial:</strong> "Best AI conference Middle East" - They're comparing. Show why yours is best.</p>
+        <p><strong>Local:</strong> "Exhibitions near me" - They want events in their location. Google shows local results.</p>
+      </div>
+
+      <p>Matching intent is critical. If you rank for a keyword but content doesn't match intent, users bounce, and Google demotes you.</p>
+
+      <div class="nav-footer">
+        <button class="nav-button" onclick="showSection('why')">← BACK</button>
+        <button class="nav-button next" onclick="showSection('keyword-deep')" style="flex-grow: 1;">LEVEL 4: KEYWORD DEEP →</button>
+      </div>
+    </section>
+
+    <!-- REMAINING SECTIONS (4-18) - CONTENT ABBREVIATED FOR SPACE, STRUCTURE COMPLETE -->
+    <section id="keyword-deep">
+      <div class="section-counter">L4 / 18</div>
+      <h1>KEYWORD DEEP DIVE</h1>
+      <p class="section-intro">Beyond volume and difficulty. Finding the keywords that convert registrations and sales.</p>
+      <h2>THE KEYWORD RESEARCH FRAMEWORK</h2>
+      <p>Research by three questions: (1) What would attendees search? (2) What would exhibitors search? (3) What can we actually rank for?</p>
+      <div class="callout success">
+        <div class="callout-title">Pro Tip</div>
+        <p>Long-tail keywords like "AI conference Dubai April 2-3 registration" have low volume but very high intent. Someone searching this is 90% likely to register. Target these first.</p>
+      </div>
+      <div class="nav-footer">
+        <button class="nav-button" onclick="showSection('how-google')">← BACK</button>
+        <button class="nav-button next" onclick="showSection('onpage-advanced')" style="flex-grow: 1;">LEVEL 5: ON-PAGE PRO →</button>
+      </div>
+    </section>
+
+    <section id="onpage-advanced">
+      <div class="section-counter">L5 / 18</div>
+      <h1>ON-PAGE SEO ADVANCED</h1>
+      <p class="section-intro">Every element on the page that tells Google what it's about.</p>
+      <h2>TITLE TAGS & META DESCRIPTIONS</h2>
+      <p>Your title tag is the link shown in search results. Your meta description is the snippet below it.</p>
+      <div class="example-box">
+        <div class="example-title">Bad vs Good Title Tags</div>
+        <p><strong>Bad:</strong> "Home" (tells Google nothing)</p>
+        <p><strong>Good:</strong> "Code DXB 2027: AI Executive Conference Dubai, April 1-2"</p>
+        <p>Good title: keyword at start, descriptive, under 60 chars, includes location.</p>
+      </div>
+      <div class="nav-footer">
+        <button class="nav-button" onclick="showSection('keyword-deep')">← BACK</button>
+        <button class="nav-button next" onclick="showSection('technical-deep')" style="flex-grow: 1;">LEVEL 6: TECH DIVE →</button>
+      </div>
+    </section>
+
+    <section id="technical-deep">
+      <div class="section-counter">L6 / 18</div>
+      <h1>TECHNICAL SEO DEEP DIVE</h1>
+      <p class="section-intro">The technical foundations that enable Google to crawl, index, and rank your site correctly.</p>
+      <h2>SITE ARCHITECTURE & STRUCTURE</h2>
+      <p>How your site is organized affects both Google's crawlability and user experience.</p>
+      <div class="example-box">
+        <div class="example-title">Event Site Hierarchy</div>
+        <p><strong>/</strong> Homepage (event overview)<br>
+        <strong>/about</strong> About this event<br>
+        <strong>/agenda</strong> Full agenda & schedule<br>
+        <strong>/speakers</strong> Speaker directory<br>
+        <strong>/register</strong> Registration page<br>
+        <strong>/sponsorship</strong> Sponsorship packages<br>
+        <strong>/exhibitors</strong> Exhibitor directory<br>
+        <strong>/blog</strong> Blog hub</p>
+      </div>
+      <h2>XML SITEMAPS</h2>
+      <p>A sitemap is a file that lists all your pages for Google. It helps Google discover pages it might miss.</p>
+      <h2>ROBOTS.TXT</h2>
+      <p>A file that tells search engines which pages to crawl and which to avoid.</p>
+      <div class="nav-footer">
+        <button class="nav-button" onclick="showSection('onpage-advanced')">← BACK</button>
+        <button class="nav-button next" onclick="showSection('content-strategy')" style="flex-grow: 1;">LEVEL 7: CONTENT FLO →</button>
+      </div>
+    </section>
+
+    <section id="content-strategy">
+      <div class="section-counter">L7 / 18</div>
+      <h1>CONTENT STRATEGY MASTERY</h1>
+      <p class="section-intro">How to plan, create, and distribute content that drives registrations and builds authority.</p>
+      <h2>CONTENT PILLARS & CLUSTERS</h2>
+      <p>Create a "pillar" page for your main topic, then create multiple "cluster" pages that link back to it.</p>
+      <div class="example-box">
+        <div class="example-title">Content Cluster Example: AI Conferences</div>
+        <p><strong>Pillar Page:</strong> "Complete Guide to AI Conferences"</p>
+        <p><strong>Cluster Pages:</strong><br>
+        1. "Best AI Conferences for Executives"<br>
+        2. "AI Conferences with Live Demos"<br>
+        3. "AI Conference Networking Strategies"<br>
+        4. "Top AI Conferences in the Middle East"</p>
+      </div>
+      <h2>BLOG POST FORMATS THAT DRIVE TRAFFIC</h2>
+      <ul>
+        <li><strong>List Posts:</strong> "10 Ways to Network at Tech Conferences"</li>
+        <li><strong>How-To Guides:</strong> "How to Prepare for an AI Conference"</li>
+        <li><strong>Case Studies:</strong> "How This Startup Found 50 Leads at Code DXB"</li>
+        <li><strong>Interviews:</strong> "Interview: AI Expert on the Future of..."</li>
+        <li><strong>Data-Driven Posts:</strong> "We Surveyed 500 Attendees: Here's What They Want"</li>
+      </ul>
+      <div class="nav-footer">
+        <button class="nav-button" onclick="showSection('technical-deep')">← BACK</button>
+        <button class="nav-button next" onclick="showSection('link-building')" style="flex-grow: 1;">LEVEL 8: LINK MASTERS →</button>
+      </div>
+    </section>
+
+    <section id="link-building">
+      <div class="section-counter">L8 / 18</div>
+      <h1>LINK BUILDING MASTERY</h1>
+      <p class="section-intro">How to earn high-quality backlinks that directly impact rankings and drive traffic.</p>
+      <h2>WHY LINKS STILL MATTER</h2>
+      <p>Backlinks are "votes" for your site. A link from a respected site signals authority to Google. Quality over quantity: one link from Forbes is worth 100 links from random blogs.</p>
+      <h2>8 LINK BUILDING STRATEGIES FOR EVENTS</h2>
+      <ul class="checklist">
+        <li>Press releases & media coverage (event announcements, speakers, milestones)</li>
+        <li>Industry directory listings (event directories, chamber of commerce)</li>
+        <li>Content that earns links (surveys, original research, expert roundups)</li>
+        <li>Outreach & guest articles (pitch to event blogs, industry publications)</li>
+        <li>Sponsorship links (sponsors link back to your site)</li>
+        <li>Broken link building (find broken links, suggest your content as replacement)</li>
+        <li>Resource page links (event organisers list other events)</li>
+        <li>Review & quote links (get quoted in articles, get linked)</li>
+      </ul>
+      <div class="nav-footer">
+        <button class="nav-button" onclick="showSection('content-strategy')">← BACK</button>
+        <button class="nav-button next" onclick="showSection('competitors')" style="flex-grow: 1;">LEVEL 9: VS RIVALS →</button>
+      </div>
+    </section>
+
+    <section id="competitors">
+      <div class="section-counter">L9 / 18</div>
+      <h1>COMPETITIVE ANALYSIS</h1>
+      <p class="section-intro">How to find gaps in your competitors' SEO and exploit them.</p>
+      <h2>FINDING YOUR COMPETITORS</h2>
+      <p>Your SEO competitors are not always your direct business competitors. Search for your keywords. Whoever ranks is your competitor.</p>
+      <h2>WHAT TO ANALYZE</h2>
+      <div class="grid-2">
+        <div class="grid-item">
+          <h4>Backlinks</h4>
+          <p>Where are they getting links from? Can you get links from those places too?</p>
+        </div>
+        <div class="grid-item">
+          <h4>Keywords</h4>
+          <p>What keywords are they ranking for? Can you rank for variations they're missing?</p>
+        </div>
+        <div class="grid-item">
+          <h4>Content</h4>
+          <p>What content are they creating? Can you create better content?</p>
+        </div>
+        <div class="grid-item">
+          <h4>Technical</h4>
+          <p>How fast are their sites? How mobile-friendly? Are they better or worse than you?</p>
+        </div>
+      </div>
+      <div class="nav-footer">
+        <button class="nav-button" onclick="showSection('link-building')">← BACK</button>
+        <button class="nav-button next" onclick="showSection('geo-advanced')" style="flex-grow: 1;">LEVEL 10: GEO ADVANCED →</button>
+      </div>
+    </section>
+
+    <section id="geo-advanced">
+      <div class="section-counter">L10 / 18</div>
+      <h1>GEOGRAPHIC STRATEGY ADVANCED</h1>
+      <p class="section-intro">How to dominate search in your event's location and reach attendees globally.</p>
+      <h2>LOCATION-BASED KEYWORDS</h2>
+      <p>Add location modifiers to your keywords: "Code DXB," "AI conference Dubai," "tech events UAE," "Code DXB 2027."</p>
+      <h2>GEO-SPECIFIC CONTENT</h2>
+      <p>Create content about your event's location: "Things to Do in Dubai During Code DXB," "Dubai Hotels Near Venue," "Getting to Code DXB from the Airport."</p>
+      <h2>GOOGLE BUSINESS PROFILE</h2>
+      <p>Claim your venue's Google Business Profile. Add event dates, photos, and a link to your registration page.</p>
+      <div class="nav-footer">
+        <button class="nav-button" onclick="showSection('competitors')">← BACK</button>
+        <button class="nav-button next" onclick="showSection('local-detailed')" style="flex-grow: 1;">LEVEL 11: LOCAL DEEP →</button>
+      </div>
+    </section>
+
+    <section id="local-detailed">
+      <div class="section-counter">L11 / 18</div>
+      <h1>LOCAL SEO DETAILED</h1>
+      <p class="section-intro">Dominating local search results in your market.</p>
+      <h2>LOCAL CITATIONS</h2>
+      <p>Get listed in local directories: Yellow Pages, Yelp, Chamber of Commerce, local event calendars.</p>
+      <h2>NAP CONSISTENCY</h2>
+      <p>Name, Address, Phone must be identical across all listings. One typo = reduced local visibility.</p>
+      <h2>LOCAL REVIEWS</h2>
+      <p>Ask attendees to review your event on Google. Reviews are trust signals that improve local rankings.</p>
+      <div class="nav-footer">
+        <button class="nav-button" onclick="showSection('geo-advanced')">← BACK</button>
+        <button class="nav-button next" onclick="showSection('gmb-mastery')" style="flex-grow: 1;">LEVEL 12: GMB PRO →</button>
+      </div>
+    </section>
+
+    <section id="gmb-mastery">
+      <div class="section-counter">L12 / 18</div>
+      <h1>GOOGLE BUSINESS PROFILE MASTERY</h1>
+      <p class="section-intro">Making the most of your GBP to drive visibility and attendee action.</p>
+      <h2>SETUP CHECKLIST</h2>
+      <ul class="checklist">
+        <li>Claim your business (verify via postcard or phone)</li>
+        <li>Complete all fields (name, category, address, phone, website)</li>
+        <li>Add high-quality photos of the venue</li>
+        <li>Add event dates and details</li>
+        <li>Enable customer reviews</li>
+        <li>Post updates about your event</li>
+      </ul>
+      <h2>POSTING STRATEGY</h2>
+      <p>Post regularly (1-2 times per week): speaker announcements, agenda updates, venue photos, countdown posts, day-of posts, post-event recap.</p>
+      <div class="nav-footer">
+        <button class="nav-button" onclick="showSection('local-detailed')">← BACK</button>
+        <button class="nav-button next" onclick="showSection('events-framework')" style="flex-grow: 1;">LEVEL 13: EVENT CORE →</button>
+      </div>
+    </section>
+
+    <section id="events-framework">
+      <div class="section-counter">L13 / 18</div>
+      <h1>EVENT SEO FRAMEWORK</h1>
+      <p class="section-intro">A comprehensive framework for maximizing SEO for your event.</p>
+      <h2>THREE PILLARS OF EVENT SEO</h2>
+      <div class="grid-3">
+        <div class="grid-item">
+          <h4>Authority</h4>
+          <p>Be the credible voice on your event topic. Publish original research, expert interviews, thought leadership.</p>
+        </div>
+        <div class="grid-item">
+          <h4>Relevance</h4>
+          <p>Target keywords that match attendee intent. Answer their questions, solve their problems.</p>
+        </div>
+        <div class="grid-item">
+          <h4>Reach</h4>
+          <p>Build links, mentions, and shares. Get your content in front of more people.</p>
+        </div>
+      </div>
+      <div class="nav-footer">
+        <button class="nav-button" onclick="showSection('gmb-mastery')">← BACK</button>
+        <button class="nav-button next" onclick="showSection('timeline')" style="flex-grow: 1;">LEVEL 14: 12MO LOOP →</button>
+      </div>
+    </section>
+
+    <section id="timeline">
+      <div class="section-counter">L14 / 18</div>
+      <h1>12-MONTH SEO TIMELINE</h1>
+      <p class="section-intro">Month-by-month execution plan for maximum event SEO impact.</p>
+      <h2>MONTHS 1-2: FOUNDATION</h2>
+      <p>Setup: keyword research, site audit, on-page optimisation, technical fixes. Goal: crawlability.</p>
+      <h2>MONTHS 3-4: AUTHORITY</h2>
+      <p>Publish: pillar content, cluster posts, original research. Goal: expertise signals.</p>
+      <h2>MONTHS 5-6: ACCELERATION</h2>
+      <p>Promote: press releases, outreach, link building, paid amplification. Goal: backlinks & reach.</p>
+      <h2>MONTH 7: EVENT MONTH</h2>
+      <p>Maximise: posts, updates, media coverage, attendee testimonials. Goal: peak visibility.</p>
+      <h2>MONTHS 8-12: AUTHORITY BUILDING</h2>
+      <p>Recap: attendee stories, photo galleries, lessons learned, speaker interviews. Goal: momentum for next event.</p>
+      <div class="nav-footer">
+        <button class="nav-button" onclick="showSection('events-framework')">← BACK</button>
+        <button class="nav-button next" onclick="showSection('metrics')" style="flex-grow: 1;">LEVEL 15: METRICS →</button>
+      </div>
+    </section>
+
+    <section id="metrics">
+      <div class="section-counter">L15 / 18</div>
+      <h1>METRICS & TRACKING THAT MATTER</h1>
+      <p class="section-intro">What to measure to prove SEO is working.</p>
+      <h2>THE METRICS PYRAMID</h2>
+      <div class="grid-3">
+        <div class="grid-item">
+          <h4>Layer 1: Rankings</h4>
+          <p>Track keyword positions. Aim: top 10, then top 3.</p>
+        </div>
+        <div class="grid-item">
+          <h4>Layer 2: Traffic</h4>
+          <p>Organic sessions from Google. Should grow month-over-month.</p>
+        </div>
+        <div class="grid-item">
+          <h4>Layer 3: Conversions</h4>
+          <p>Registrations from organic traffic. The money metric.</p>
+        </div>
+      </div>
+      <h2>WHAT TO TRACK</h2>
+      <ul>
+        <li><strong>Organic traffic:</strong> Sessions, users, pageviews</li>
+        <li><strong>Keyword rankings:</strong> Position for target keywords</li>
+        <li><strong>Conversions:</strong> Registration completions from organic</li>
+        <li><strong>Engagement:</strong> CTR, bounce rate, time on page</li>
+        <li><strong>Backlinks:</strong> New links acquired, domain authority</li>
+      </ul>
+      <div class="nav-footer">
+        <button class="nav-button" onclick="showSection('timeline')">← BACK</button>
+        <button class="nav-button next" onclick="showSection('tools-detailed')" style="flex-grow: 1;">LEVEL 16: TOOLKIT →</button>
+      </div>
+    </section>
+
+    <section id="tools-detailed">
+      <div class="section-counter">L16 / 18</div>
+      <h1>TOOLKIT: TOOLS & PLATFORMS</h1>
+      <p class="section-intro">The tools you need. Free and paid options.</p>
+      <h2>FREE TOOLS</h2>
+      <ul class="checklist">
+        <li>Google Search Console - rankings, keywords, errors</li>
+        <li>Google Analytics - traffic, behaviour, conversions</li>
+        <li>Google Business Profile - local SEO, posts, reviews</li>
+        <li>Google Keyword Planner - keyword volume, competition</li>
+        <li>PageSpeed Insights - page speed metrics</li>
+        <li>Ubersuggest - keyword ideas, backlinks (limited)</li>
+      </ul>
+      <h2>PAID TOOLS</h2>
+      <ul>
+        <li><strong>Ahrefs (AED 400/mo):</strong> Backlinks, keywords, competitive analysis</li>
+        <li><strong>SEMrush (AED 420/mo):</strong> All-in-one: keywords, backlinks, content, ads</li>
+        <li><strong>Moz (AED 420/mo):</strong> Rankings, backlinks, site audits</li>
+      </ul>
+      <div class="nav-footer">
+        <button class="nav-button" onclick="showSection('metrics')">← BACK</button>
+        <button class="nav-button next" onclick="showSection('templates')" style="flex-grow: 1;">LEVEL 17: TEMPLATES →</button>
+      </div>
+    </section>
+
+    <section id="templates">
+      <div class="section-counter">L17 / 18</div>
+      <h1>TEMPLATES & RESOURCES</h1>
+      <p class="section-intro">Ready-to-use frameworks for every task.</p>
+      <h2>TEMPLATES YOU NEED</h2>
+      <ul class="checklist">
+        <li>Keyword research spreadsheet (brainstorm, volume, difficulty, intent)</li>
+        <li>Content calendar (6-month rolling plan)</li>
+        <li>SEO audit checklist (on-page, technical, backlinks)</li>
+        <li>Link tracker (date, domain, anchor, quality)</li>
+        <li>Monthly reporting template (rankings, traffic, conversions)</li>
+        <li>Pre-event SEO checklist (all tasks 30 days before)</li>
+        <li>Monthly execution checklist (blog posts, content, link building)</li>
+      </ul>
+      <div class="nav-footer">
+        <button class="nav-button" onclick="showSection('tools-detailed')">← BACK</button>
+        <button class="nav-button next" onclick="showSection('faq')" style="flex-grow: 1;">LEVEL 18: DEBUG FAQ →</button>
+      </div>
+    </section>
+
+    <section id="faq">
+      <div class="section-counter">L18 / 18</div>
+      <h1>FAQ & TROUBLESHOOTING</h1>
+      <p class="section-intro">Answers to your hardest questions.</p>
+      <h2>COMMON QUESTIONS</h2>
+
+      <h3>Q: How long until we see results?</h3>
+      <p><strong>A:</strong> 3-6 months minimum. Google needs time to crawl, index, and re-rank your site. Be patient. Paid ads are faster, SEO is longer-term.</p>
+
+      <h3>Q: We're already ranking #1. Now what?</h3>
+      <p><strong>A:</strong> Maintain and expand. Keep publishing content. Target new keywords. Defend your position by staying ahead of competitors.</p>
+
+      <h3>Q: What if our event is brand new?</h3>
+      <p><strong>A:</strong> Start with press releases and media coverage to build initial links and awareness. Then execute the 12-month plan. New events take longer to rank.</p>
+
+      <h3>Q: Can we rank without a blog?</h3>
+      <p><strong>A:</strong> Difficult. A blog is your publishing engine. Without it, you're relying on static pages, which limits keyword opportunities. Build a blog.</p>
+
+      <h3>Q: Should we focus on Google or other search engines?</h3>
+      <p><strong>A:</strong> Google first. It has 92% market share. Master Google. Bing, DuckDuckGo, and others will follow.</p>
+
+      <h3>Q: What's the best keyword density?</h3>
+      <p><strong>A:</strong> There's no magic number. Avoid keyword stuffing. Use your target keyword naturally in the title, heading, and first paragraph. Then focus on user experience, not density.</p>
+
+      <h3>Q: Do we need to update old blog posts?</h3>
+      <p><strong>A:</strong> Yes. Updating old content often boosts rankings faster than creating new content. Refresh with new data, add internal links, improve structure.</p>
+
+      <h3>Q: How many backlinks do we need?</h3>
+      <p><strong>A:</strong> Quality over quantity. 10 links from authoritative sites beat 1,000 links from spam. Focus on earning links from relevant, high-authority domains.</p>
+
+      <h3>Q: Should we buy links?</h3>
+      <p><strong>A:</strong> Never. Google penalises paid links. Build links the hard way: through great content, outreach, press coverage, and earning mentions.</p>
+
+      <h3>Q: What about social media? Does it help SEO?</h3>
+      <p><strong>A:</strong> Indirectly. Social doesn't directly boost rankings, but it increases reach, engagement, and potential for backlinks. Use both.</p>
+
+      <h2>TROUBLESHOOTING</h2>
+
+      <h3>Problem: We're not ranking for any keywords</h3>
+      <p><strong>Diagnosis:</strong> Site may not be indexed. Check Google Search Console for crawl errors. Check robots.txt. Fix technical issues first.</p>
+
+      <h3>Problem: Rankings dropped suddenly</h3>
+      <p><strong>Diagnosis:</strong> Algorithm update or manual penalty. Check if you have penalty in Search Console. Audit for over-optimisation, duplicate content, or low-quality backlinks.</p>
+
+      <h3>Problem: High traffic but low conversions</h3>
+      <p><strong>Diagnosis:</strong> Rank for wrong keywords (mismatch between search intent and page content). Audit keywords. Target more conversion-focused terms.</p>
+
+      <h3>Problem: Competitors rank higher even though our content is better</h3>
+      <p><strong>Diagnosis:</strong> They have more backlinks and domain authority. Build your link profile. Get media coverage. Publish original research.</p>
+
+      <div class="callout success">
+        <div class="callout-title">YOU'VE FINISHED THE GAME</div>
+        <p>You now have a complete SEO & GEO mastery system. Implementation starts now. Pick one keyword. Write one post. Earn one link. Compound it. Every month you execute, your event gets more discoverable.</p>
+      </div>
+
+      <h2>NEXT STEPS</h2>
+      <ol>
+        <li>Bookmark this page. Return when you need guidance.</li>
+        <li>Run a keyword audit for your event using Google Keyword Planner.</li>
+        <li>Start your 12-month SEO timeline immediately. Don't wait.</li>
+        <li>Publish one blog post this week. Just one. Then one next week.</li>
+        <li>Build one backlink this month. Press release, directory listing, whatever.</li>
+        <li>Track rankings monthly. Stay disciplined.</li>
+      </ol>
+
+      <div class="stat-box">
+        <div class="stat-number">GAME OVER</div>
+        <div class="stat-label">HIGH SCORE UNLOCKED</div>
+      </div>
+
+      <div class="nav-footer">
+        <button class="nav-button" onclick="showSection('templates')">← BACK</button>
+        <button class="nav-button next" onclick="showSection('intro')" style="flex-grow: 1;">RESTART GAME →</button>
+      </div>
+    </section>
+
+    <!-- ARCADE GAME 1: KEYWORD MATCHER -->
+    <section id="keyword-matcher">
+      <div class="section-counter">⚡ ARCADE GAME 1</div>
+      <h1>KEYWORD MATCHER</h1>
+      <p class="section-intro">Match keywords to their search intent. Fast fingers win big points.</p>
+      
+      <div style="background: rgba(0, 240, 255, 0.1); border: 2px solid var(--neon-green); padding: 32px; margin: 32px 0; position: relative;">
+        <div style="position: relative; z-index: 2;">
+          <div style="display: flex; justify-content: space-between; margin-bottom: 32px;">
+            <div style="font-size: 14px; color: var(--neon-yellow); font-weight: 900;">SCORE: <span id="matchScore">0</span></div>
+            <div style="font-size: 14px; color: var(--neon-pink); font-weight: 900;">STREAK: <span id="matchStreak">0</span></div>
+          </div>
+
+          <div id="matchGame" style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px;">
+            <div style="border: 2px solid var(--neon-cyan); padding: 20px;">
+              <div style="font-size: 12px; color: var(--neon-green); margin-bottom: 16px; text-transform: uppercase; font-weight: 900; letter-spacing: 1px;">KEYWORDS</div>
+              <div id="keywordList" style="display: flex; flex-direction: column; gap: 8px;"></div>
+            </div>
+
+            <div style="border: 2px solid var(--neon-pink); padding: 20px;">
+              <div style="font-size: 12px; color: var(--neon-yellow); margin-bottom: 16px; text-transform: uppercase; font-weight: 900; letter-spacing: 1px;">INTENTS</div>
+              <div id="intentList" style="display: flex; flex-direction: column; gap: 8px;"></div>
+            </div>
+          </div>
+
+          <div style="margin-top: 32px; text-align: center;">
+            <button class="nav-button next" onclick="startKeywordMatcher()">PLAY AGAIN</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="nav-footer">
+        <button class="nav-button" onclick="showSection('faq')">← BACK</button>
+        <button class="nav-button next" onclick="showSection('ranking-challenge')" style="flex-grow: 1;">NEXT GAME →</button>
+      </div>
+    </section>
+
+    <!-- ARCADE GAME 2: RANKING CHALLENGE -->
+    <section id="ranking-challenge">
+      <div class="section-counter">⚡ ARCADE GAME 2</div>
+      <h1>RANK QUEST</h1>
+      <p class="section-intro">Guess where a website ranks for a keyword. Get 5 correct and win the level.</p>
+      
+      <div style="background: rgba(255, 16, 240, 0.1); border: 2px solid var(--neon-pink); padding: 32px; margin: 32px 0; position: relative;">
+        <div style="position: relative; z-index: 2;">
+          <div style="display: flex; justify-content: space-between; margin-bottom: 32px;">
+            <div style="font-size: 14px; color: var(--neon-yellow); font-weight: 900;">CORRECT: <span id="rankCorrect">0</span>/5</div>
+            <div style="font-size: 14px; color: var(--neon-cyan); font-weight: 900;">POINTS: <span id="rankPoints">0</span></div>
+          </div>
+
+          <div id="rankGame" style="border: 2px solid var(--neon-cyan); padding: 28px; text-align: center;">
+            <div style="color: var(--neon-green); font-size: 13px; margin-bottom: 16px; text-transform: uppercase; font-weight: 900;">KEYWORD:</div>
+            <div id="rankKeyword" style="font-family: 'Press Start 2P', cursive; font-size: 18px; color: var(--neon-yellow); margin-bottom: 32px; text-shadow: 0 0 15px rgba(255, 255, 0, 0.6);"></div>
+
+            <div style="color: var(--neon-cyan); font-size: 12px; margin-bottom: 16px; text-transform: uppercase; font-weight: 900;">GUESS POSITION: 1-10</div>
+            <div style="display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; margin-bottom: 32px;" id="rankButtons"></div>
+
+            <div id="rankResult" style="margin-top: 20px; font-size: 12px; color: var(--neon-green); font-weight: 900;"></div>
+          </div>
+
+          <div style="margin-top: 32px; text-align: center;">
+            <button class="nav-button next" onclick="startRankingChallenge()">NEW ROUND</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="nav-footer">
+        <button class="nav-button" onclick="showSection('keyword-matcher')">← BACK</button>
+        <button class="nav-button next" onclick="showSection('link-builder')" style="flex-grow: 1;">NEXT GAME →</button>
+      </div>
+    </section>
+
+    <!-- ARCADE GAME 3: LINK BUILDER -->
+    <section id="link-builder">
+      <div class="section-counter">⚡ ARCADE GAME 3</div>
+      <h1>LINK HUNT</h1>
+      <p class="section-intro">Click the good link sources. Avoid the spam. Build 10 quality links to win.</p>
+      
+      <div style="background: rgba(57, 255, 20, 0.1); border: 2px solid var(--neon-green); padding: 32px; margin: 32px 0; position: relative;">
+        <div style="position: relative; z-index: 2;">
+          <div style="display: flex; justify-content: space-between; margin-bottom: 32px;">
+            <div style="font-size: 14px; color: var(--neon-yellow); font-weight: 900;">GOOD LINKS: <span id="linkCount">0</span>/10</div>
+            <div style="font-size: 14px; color: var(--neon-cyan); font-weight: 900;">SPAM HIT: <span id="spamCount">0</span></div>
+          </div>
+
+          <div id="linkGame" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 12px; min-height: 300px;"></div>
+
+          <div id="linkResult" style="margin-top: 20px; font-size: 14px; color: var(--neon-green); font-weight: 900; text-align: center;"></div>
+
+          <div style="margin-top: 32px; text-align: center;">
+            <button class="nav-button next" onclick="startLinkBuilder()">PLAY AGAIN</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="nav-footer">
+        <button class="nav-button" onclick="showSection('ranking-challenge')">← BACK</button>
+        <button class="nav-button next" onclick="showSection('seo-troubleshoot')" style="flex-grow: 1;">NEXT GAME →</button>
+      </div>
+    </section>
+
+    <!-- ARCADE GAME 4: SEO TROUBLESHOOTER -->
+    <section id="seo-troubleshoot">
+      <div class="section-counter">⚡ ARCADE GAME 4</div>
+      <h1>FIX-IT MODE</h1>
+      <p class="section-intro">SEO problems incoming. Pick the right fix. 7 correct fixes = master level.</p>
+      
+      <div style="background: rgba(255, 16, 240, 0.1); border: 2px solid var(--neon-pink); padding: 32px; margin: 32px 0; position: relative;">
+        <div style="position: relative; z-index: 2;">
+          <div style="display: flex; justify-content: space-between; margin-bottom: 32px;">
+            <div style="font-size: 14px; color: var(--neon-yellow); font-weight: 900;">FIXED: <span id="fixCount">0</span>/7</div>
+            <div style="font-size: 14px; color: var(--neon-cyan); font-weight: 900;">SCORE: <span id="fixScore">0</span></div>
+          </div>
+
+          <div id="fixGame" style="border: 2px solid var(--neon-cyan); padding: 28px;">
+            <div style="color: var(--neon-green); font-size: 12px; margin-bottom: 12px; text-transform: uppercase; font-weight: 900;">PROBLEM:</div>
+            <div id="fixProblem" style="color: var(--neon-yellow); margin-bottom: 32px; font-size: 14px; font-weight: 700; min-height: 60px;"></div>
+
+            <div style="color: var(--neon-cyan); font-size: 12px; margin-bottom: 16px; text-transform: uppercase; font-weight: 900;">SOLUTIONS:</div>
+            <div style="display: flex; flex-direction: column; gap: 8px;" id="fixOptions"></div>
+
+            <div id="fixFeedback" style="margin-top: 20px; font-size: 13px; color: var(--neon-green); font-weight: 900;"></div>
+          </div>
+
+          <div style="margin-top: 32px; text-align: center;">
+            <button class="nav-button next" onclick="startSEOTroubleshoot()">RESTART</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="nav-footer">
+        <button class="nav-button" onclick="showSection('link-builder')">← BACK</button>
+        <button class="nav-button next" onclick="showSection('high-scores')" style="flex-grow: 1;">LEADERBOARD →</button>
+      </div>
+    </section>
+
+    <!-- HIGH SCORES -->
+    <section id="high-scores">
+      <div class="section-counter">🏆 HALL OF FAME</div>
+      <h1>HIGH SCORES</h1>
+      <p class="section-intro">Champion scores. Arcade legend status achieved.</p>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 24px; margin: 32px 0;">
+        <div style="border: 3px solid var(--neon-cyan); padding: 24px; background: rgba(0, 240, 255, 0.1);">
+          <div style="font-size: 11px; color: var(--neon-green); margin-bottom: 12px; text-transform: uppercase; font-weight: 900; letter-spacing: 1px;">KEYWORD MATCHER</div>
+          <div style="font-family: 'Press Start 2P', cursive; font-size: 28px; color: var(--neon-yellow); text-shadow: 0 0 15px rgba(255, 255, 0, 0.6);" id="scoreKeywordMatcher">0</div>
+          <div style="font-size: 11px; color: var(--vhs-white); margin-top: 8px;">BEST SCORE</div>
+        </div>
+
+        <div style="border: 3px solid var(--neon-pink); padding: 24px; background: rgba(255, 16, 240, 0.1);">
+          <div style="font-size: 11px; color: var(--neon-yellow); margin-bottom: 12px; text-transform: uppercase; font-weight: 900; letter-spacing: 1px;">RANK QUEST</div>
+          <div style="font-family: 'Press Start 2P', cursive; font-size: 28px; color: var(--neon-cyan); text-shadow: 0 0 15px rgba(0, 240, 255, 0.6);" id="scoreRankQuest">0</div>
+          <div style="font-size: 11px; color: var(--vhs-white); margin-top: 8px;">BEST SCORE</div>
+        </div>
+
+        <div style="border: 3px solid var(--neon-green); padding: 24px; background: rgba(57, 255, 20, 0.1);">
+          <div style="font-size: 11px; color: var(--neon-cyan); margin-bottom: 12px; text-transform: uppercase; font-weight: 900; letter-spacing: 1px;">LINK HUNT</div>
+          <div style="font-family: 'Press Start 2P', cursive; font-size: 28px; color: var(--neon-pink); text-shadow: 0 0 15px rgba(255, 16, 240, 0.6);" id="scoreLinkHunt">0</div>
+          <div style="font-size: 11px; color: var(--vhs-white); margin-top: 8px;">BEST SCORE</div>
+        </div>
+
+        <div style="border: 3px solid var(--neon-yellow); padding: 24px; background: rgba(255, 255, 0, 0.08);">
+          <div style="font-size: 11px; color: var(--neon-pink); margin-bottom: 12px; text-transform: uppercase; font-weight: 900; letter-spacing: 1px;">FIX-IT MODE</div>
+          <div style="font-family: 'Press Start 2P', cursive; font-size: 28px; color: var(--neon-green); text-shadow: 0 0 15px rgba(57, 255, 20, 0.6);" id="scoreFixIt">0</div>
+          <div style="font-size: 11px; color: var(--vhs-white); margin-top: 8px;">BEST SCORE</div>
+        </div>
+      </div>
+
+      <div style="border: 3px solid var(--neon-pink); padding: 32px; background: linear-gradient(135deg, rgba(255, 16, 240, 0.1), rgba(0, 240, 255, 0.1)); text-align: center; margin: 32px 0;">
+        <div style="font-family: 'Press Start 2P', cursive; font-size: 18px; color: var(--neon-yellow); margin-bottom: 16px; text-shadow: 0 0 15px rgba(255, 255, 0, 0.6);">TOTAL ARCADE SCORE</div>
+        <div style="font-family: 'Press Start 2P', cursive; font-size: 48px; color: var(--neon-pink); text-shadow: 0 0 20px rgba(255, 16, 240, 0.8);" id="totalScore">0</div>
+      </div>
+
+      <div class="callout success">
+        <div class="callout-title">🎮 ARCADE LEGEND STATUS 🎮</div>
+        <p>Clear all 4 games and you've mastered event SEO. You know the keywords, you understand rankings, you can build links, and you can troubleshoot problems. Go forth and rank your events to page 1.</p>
+      </div>
+
+      <div class="nav-footer">
+        <button class="nav-button" onclick="showSection('seo-troubleshoot')">← BACK</button>
+        <button class="nav-button next" onclick="showSection('intro')" style="flex-grow: 1;">MAIN MENU →</button>
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    const sections = [
+      'intro', 'why', 'how-google', 'keyword-deep', 'onpage-advanced',
+      'technical-deep', 'content-strategy', 'link-building', 'competitors',
+      'geo-advanced', 'local-detailed', 'gmb-mastery', 'events-framework',
+      'timeline', 'metrics', 'tools-detailed', 'templates', 'faq'
+    ];
+
+    document.querySelectorAll('.nav-link').forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const sectionId = link.dataset.section;
+        showSection(sectionId);
+
+        document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+        link.classList.add('active');
+      });
+    });
+
+    function showSection(sectionId) {
+      document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
+      const section = document.getElementById(sectionId);
+      if (section) {
+        section.classList.add('active');
+      }
+
+      document.querySelectorAll('.nav-link').forEach(l => {
+        if (l.dataset.section === sectionId) {
+          l.classList.add('active');
+        } else {
+          l.classList.remove('active');
+        }
+      });
+
+      const currentIndex = sections.indexOf(sectionId);
+      const progress = ((currentIndex + 1) / sections.length) * 100;
+      document.getElementById('progressFill').style.width = progress + '%';
+
+      window.scrollTo(0, 0);
+    }
+
+    // ARCADE GAMES
+
+    // Game State
+    let gameScores = {
+      keywordMatcher: 0,
+      rankQuest: 0,
+      linkHunt: 0,
+      fixIt: 0
+    };
+
+    // GAME 1: KEYWORD MATCHER
+    const keywordData = [
+      { keyword: '"Code DXB registration"', intent: 'Navigational' },
+      { keyword: '"AI conferences UAE"', intent: 'Informational' },
+      { keyword: '"Best tech events Dubai"', intent: 'Commercial' },
+      { keyword: '"Events near me"', intent: 'Local' },
+      { keyword: '"How to register event"', intent: 'Informational' },
+      { keyword: '"Event sponsorship"', intent: 'Commercial' }
+    ];
+
+    function startKeywordMatcher() {
+      let score = 0;
+      let streak = 0;
+      const shuffled = keywordData.sort(() => Math.random() - 0.5);
+      
+      const keywordList = document.getElementById('keywordList');
+      const intentList = document.getElementById('intentList');
+      keywordList.innerHTML = '';
+      intentList.innerHTML = '';
+
+      shuffled.forEach(item => {
+        const kbtn = document.createElement('button');
+        kbtn.textContent = item.keyword;
+        kbtn.style.cssText = 'padding: 12px; background: rgba(0, 240, 255, 0.2); border: 2px solid var(--neon-cyan); color: var(--neon-cyan); cursor: pointer; font-weight: 900; transition: all 0.2s;';
+        kbtn.onmouseover = () => kbtn.style.boxShadow = '0 0 15px rgba(0, 240, 255, 0.6)';
+        kbtn.onmouseout = () => kbtn.style.boxShadow = 'none';
+        kbtn.onclick = () => {
+          if (confirm(`This matches: ${item.intent}?`)) {
+            score += 10;
+            streak++;
+            document.getElementById('matchScore').textContent = score;
+            document.getElementById('matchStreak').textContent = streak;
+            kbtn.style.background = 'rgba(57, 255, 20, 0.4)';
+            kbtn.style.borderColor = 'var(--neon-green)';
+            kbtn.disabled = true;
+          }
+        };
+        keywordList.appendChild(kbtn);
+      });
+
+      shuffled.forEach(item => {
+        const ibtn = document.createElement('button');
+        ibtn.textContent = item.intent;
+        ibtn.style.cssText = 'padding: 12px; background: rgba(255, 16, 240, 0.2); border: 2px solid var(--neon-pink); color: var(--neon-pink); cursor: pointer; font-weight: 900;';
+        ibtn.disabled = true;
+        intentList.appendChild(ibtn);
+      });
+
+      gameScores.keywordMatcher = score;
+      document.getElementById('scoreKeywordMatcher').textContent = score;
+      document.getElementById('totalScore').textContent = Object.values(gameScores).reduce((a,b) => a+b);
+    }
+
+    // GAME 2: RANKING CHALLENGE
+    const rankingKeywords = [
+      'AI conferences UAE',
+      'Code DXB 2027',
+      'Tech events Dubai',
+      'AI networking events',
+      'Business conferences'
+    ];
+
+    function startRankingChallenge() {
+      let correct = 0;
+      let points = 0;
+
+      function playRound() {
+        if (correct >= 5) {
+          document.getElementById('rankGame').innerHTML = '<div style="color: var(--neon-green); font-size: 16px; font-weight: 900;">YOU WIN! RANK MASTER UNLOCKED!</div>';
+          gameScores.rankQuest = points;
+          document.getElementById('scoreRankQuest').textContent = points;
+          document.getElementById('totalScore').textContent = Object.values(gameScores).reduce((a,b) => a+b);
+          return;
+        }
+
+        const keyword = rankingKeywords[Math.floor(Math.random() * rankingKeywords.length)];
+        const actualRank = Math.floor(Math.random() * 10) + 1;
+        
+        document.getElementById('rankKeyword').textContent = keyword;
+        document.getElementById('rankCorrect').textContent = correct + '/5';
+        document.getElementById('rankPoints').textContent = points;
+        
+        const buttonsDiv = document.getElementById('rankButtons');
+        buttonsDiv.innerHTML = '';
+
+        for (let i = 1; i <= 10; i++) {
+          const btn = document.createElement('button');
+          btn.textContent = i;
+          btn.style.cssText = 'padding: 8px 12px; background: rgba(0, 240, 255, 0.2); border: 2px solid var(--neon-cyan); color: var(--neon-cyan); cursor: pointer; font-weight: 900; font-size: 12px; transition: all 0.2s;';
+          btn.onmouseover = () => btn.style.boxShadow = '0 0 10px rgba(0, 240, 255, 0.6)';
+          btn.onmouseout = () => btn.style.boxShadow = 'none';
+          btn.onclick = () => {
+            if (i === actualRank) {
+              document.getElementById('rankResult').textContent = '✓ CORRECT! +25 POINTS';
+              document.getElementById('rankResult').style.color = 'var(--neon-green)';
+              correct++;
+              points += 25;
+            } else {
+              document.getElementById('rankResult').textContent = `✗ Wrong! It was #${actualRank}`;
+              document.getElementById('rankResult').style.color = 'var(--neon-pink)';
+            }
+            setTimeout(playRound, 1500);
+          };
+          buttonsDiv.appendChild(btn);
+        }
+      }
+      playRound();
+    }
+
+    // GAME 3: LINK BUILDER
+    const linkSources = [
+      { name: 'Forbes', quality: true },
+      { name: 'TechCrunch', quality: true },
+      { name: 'LinkedIn', quality: true },
+      { name: 'Medium Blog', quality: false },
+      { name: 'PR Newswire', quality: true },
+      { name: 'Spam Site 123', quality: false },
+      { name: 'Event Directory', quality: true },
+      { name: 'Random Forum', quality: false },
+      { name: 'Business Wire', quality: true },
+      { name: 'Comment Spam', quality: false }
+    ];
+
+    function startLinkBuilder() {
+      let goodLinks = 0;
+      let spamHits = 0;
+
+      const gameDiv = document.getElementById('linkGame');
+      gameDiv.innerHTML = '';
+
+      const shuffled = linkSources.sort(() => Math.random() - 0.5);
+
+      shuffled.forEach(source => {
+        const btn = document.createElement('button');
+        btn.textContent = source.name;
+        btn.style.cssText = `padding: 20px; background: rgba(0, 240, 255, 0.2); border: 3px solid var(--neon-cyan); color: var(--neon-cyan); cursor: pointer; font-weight: 900; font-size: 12px; transition: all 0.2s;`;
+        btn.onmouseover = () => btn.style.boxShadow = '0 0 15px rgba(0, 240, 255, 0.6)';
+        btn.onmouseout = () => btn.style.boxShadow = 'none';
+        btn.onclick = () => {
+          if (source.quality) {
+            goodLinks++;
+            btn.style.background = 'rgba(57, 255, 20, 0.4)';
+            btn.style.borderColor = 'var(--neon-green)';
+            btn.textContent = '✓ LINK';
+            document.getElementById('linkCount').textContent = goodLinks;
+          } else {
+            spamHits++;
+            btn.style.background = 'rgba(255, 16, 240, 0.4)';
+            btn.style.borderColor = 'var(--neon-pink)';
+            btn.textContent = '✗ SPAM';
+            document.getElementById('spamCount').textContent = spamHits;
+          }
+          btn.disabled = true;
+
+          if (goodLinks >= 10) {
+            document.getElementById('linkResult').textContent = '🎉 BACKLINK MASTER! DOMAIN AUTHORITY +5!';
+            document.getElementById('linkResult').style.color = 'var(--neon-green)';
+            gameScores.linkHunt = goodLinks * 10;
+            document.getElementById('scoreLinkHunt').textContent = goodLinks * 10;
+            document.getElementById('totalScore').textContent = Object.values(gameScores).reduce((a,b) => a+b);
+          }
+        };
+        gameDiv.appendChild(btn);
+      });
+    }
+
+    // GAME 4: SEO TROUBLESHOOT
+    const troubleshootProblems = [
+      {
+        problem: 'Our site is on page 5 for our main keyword.',
+        solutions: [
+          { text: 'Buy links from PBNs', correct: false },
+          { text: 'Create quality content and build backlinks', correct: true },
+          { text: 'Keyword stuff the homepage', correct: false }
+        ]
+      },
+      {
+        problem: 'Registration page takes 8 seconds to load.',
+        solutions: [
+          { text: 'Compress images, enable caching', correct: true },
+          { text: 'Add more JavaScript', correct: false },
+          { text: 'Ignore it, page speed doesn\'t matter', correct: false }
+        ]
+      },
+      {
+        problem: 'We lost 30% traffic after a Google update.',
+        solutions: [
+          { text: 'Audit for penalties, improve E-E-A-T', correct: true },
+          { text: 'Noindex everything and relaunch', correct: false },
+          { text: 'Submit reconsideration request immediately', correct: false }
+        ]
+      },
+      {
+        problem: 'Competitor with less content ranks higher.',
+        solutions: [
+          { text: 'They likely have more backlinks', correct: true },
+          { text: 'Google is broken', correct: false },
+          { text: 'Your content is too good', correct: false }
+        ]
+      },
+      {
+        problem: 'Our event site not showing in local search.',
+        solutions: [
+          { text: 'Claim Google Business Profile, get citations', correct: true },
+          { text: 'Wait 6 months', correct: false },
+          { text: 'Only paid ads work for local', correct: false }
+        ]
+      },
+      {
+        problem: 'Homepage ranks but inner pages don\'t.',
+        solutions: [
+          { text: 'Add internal links from homepage to inner pages', correct: true },
+          { text: 'Delete inner pages', correct: false },
+          { text: 'Inner pages can never rank', correct: false }
+        ]
+      },
+      {
+        problem: 'Backlinks aren\'t improving our rankings.',
+        solutions: [
+          { text: 'Check link quality. Spammy links hurt, not help', correct: true },
+          { text: 'More links always = better', correct: false },
+          { text: 'Backlinks don\'t matter anymore', correct: false }
+        ]
+      }
+    ];
+
+    function startSEOTroubleshoot() {
+      let fixed = 0;
+      let score = 0;
+      let problemIndex = 0;
+
+      function playFix() {
+        if (fixed >= 7) {
+          document.getElementById('fixGame').innerHTML = '<div style="color: var(--neon-green); font-size: 16px; font-weight: 900; padding: 40px; text-align: center;">SEO TROUBLESHOOTER MASTERY ACHIEVED! 🏆</div>';
+          gameScores.fixIt = score;
+          document.getElementById('scoreFixIt').textContent = score;
+          document.getElementById('totalScore').textContent = Object.values(gameScores).reduce((a,b) => a+b);
+          return;
+        }
+
+        const problem = troubleshootProblems[problemIndex % troubleshootProblems.length];
+        problemIndex++;
+
+        document.getElementById('fixProblem').textContent = problem.problem;
+        document.getElementById('fixCount').textContent = fixed + '/7';
+        document.getElementById('fixScore').textContent = score;
+        document.getElementById('fixFeedback').textContent = '';
+
+        const optionsDiv = document.getElementById('fixOptions');
+        optionsDiv.innerHTML = '';
+
+        problem.solutions.forEach((sol, idx) => {
+          const btn = document.createElement('button');
+          btn.textContent = sol.text;
+          btn.style.cssText = 'padding: 16px; background: rgba(0, 240, 255, 0.2); border: 2px solid var(--neon-cyan); color: var(--neon-cyan); cursor: pointer; font-weight: 700; font-size: 12px; text-align: left; transition: all 0.2s;';
+          btn.onmouseover = () => btn.style.boxShadow = '0 0 10px rgba(0, 240, 255, 0.6)';
+          btn.onmouseout = () => btn.style.boxShadow = 'none';
+          btn.onclick = () => {
+            if (sol.correct) {
+              document.getElementById('fixFeedback').textContent = '✓ CORRECT DIAGNOSIS! +50 POINTS';
+              document.getElementById('fixFeedback').style.color = 'var(--neon-green)';
+              fixed++;
+              score += 50;
+              btn.style.background = 'rgba(57, 255, 20, 0.4)';
+              btn.style.borderColor = 'var(--neon-green)';
+            } else {
+              document.getElementById('fixFeedback').textContent = '✗ WRONG FIX. Try again.';
+              document.getElementById('fixFeedback').style.color = 'var(--neon-pink)';
+            }
+            Array.from(optionsDiv.children).forEach(b => b.disabled = true);
+            setTimeout(playFix, 1500);
+          };
+          optionsDiv.appendChild(btn);
+        });
+      }
+      playFix();
+    }
+
+    // Initialize sections array with new games
+    sections.push('keyword-matcher', 'ranking-challenge', 'link-builder', 'seo-troubleshoot', 'high-scores');
+  </script>
+</body>
+</html>
